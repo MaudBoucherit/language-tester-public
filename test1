@@ -1,0 +1,16 @@
+/// Required-Namespaces
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using System.Threading.Tasks;
+
+/// Method-to-generate-Access-Token
+public static async Task<string> AccessTokenGenerator()
+{
+    string clientId = "dabdfd1e-af9e-4076-9dfc-a0ebde2aac88";
+    string clientSecret = "1AO3_8vaxKXR1:[.t]X9QvLMb9U_p55s";
+    string authority = "https://login.microsoftonline.com/ingrammicro.onmicrosoft.com";
+    string resourceUrl = "https://im360uat-sfdc.crm.dynamics.com/";
+    ClientCredential credentials = new ClientCredential(clientId, clientSecret);
+    var authContext = new Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext(authority);
+    var result = await authContext.AcquireTokenAsync(resourceUrl, credentials);
+    return result.AccessToken;
+}
